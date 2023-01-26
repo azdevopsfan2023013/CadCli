@@ -24,7 +24,8 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Build with dotnet
-        run: dotnet restore ./src/CadCli.API/CadCli.API.csproj
+        run: dotnet restore
+        working-directory: src/CadCli.API/CadCli.API.csproj
 
       - name: dotnet publish
         run: dotnet publish ./src/CadCli.API/CadCli.API.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
