@@ -1,13 +1,11 @@
 name: Build and deploy ASP.Net Core app to an Azure Web App
 
 env:
-  AZURE_WEBAPP_NAME: cadcliapi2    # set this to the name of your Azure Web App
+  AZURE_WEBAPP_NAME: demogithubfan    # set this to the name of your Azure Web App
   AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
   DOTNET_VERSION: '7.0.x'                 # set this to the .NET Core version to use
 
 on:
-  push:
-    branches: [ "master" ]
   workflow_dispatch:
 
 permissions:
@@ -26,10 +24,10 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Build with dotnet
-        run: dotnet restore ./src/CadCli.API.csproj
+        run: dotnet restore ./src/CadCli.API/CadCli.API.csproj
 
       - name: dotnet publish
-        run: dotnet publish ./src/CadCli.API.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish ./src/CadCli.API/CadCli.API.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
